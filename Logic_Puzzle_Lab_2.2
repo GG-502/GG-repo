@@ -1,0 +1,75 @@
+
+Claude Haiku 4.5
+This is a classic river crossing puzzle. Here's the solution:
+
+## Solution: 7 Moves
+
+| Move | Action | Left Bank | Right Bank | Status |
+|------|--------|-----------|-----------|--------|
+| Start | — | Farmer, Fox, Goose, Grain | — | — |
+| 1 | Take goose → | Fox, Grain | Farmer, Goose | ✓ Safe (fox & grain ok together) |
+| 2 | Return alone ← | Farmer, Fox, Grain | Goose | ✓ Safe (goose alone) |
+| 3 | Take fox → | Grain | Farmer, Fox, Goose | ✓ Safe (farmer present) |
+| 4 | **Bring goose back ←** | Farmer, Goose, Grain | Fox | ✓ Key step! (prevents fox-goose danger) |
+| 5 | Take grain → | Goose | Farmer, Fox, Grain | ✓ Safe (fox & grain ok together) |
+| 6 | Return alone ← | Farmer, Goose | Fox, Grain | ✓ Safe (fox & grain ok together) |
+| 7 | Take goose → | — | Farmer, Fox, Goose, Grain | ✓ **GOAL!** |
+
+## Key Insight
+
+The critical step is **Move 4**: bringing the goose *back* across the river. This prevents the impossible situation where the fox and goose would be left alone together. By temporarily returning the goose to the left bank, you can safely transport the grain, then return to pick up the goose for the final crossing.
+
+GPT-40
+Here is the solution to the puzzle, written as a sequence of moves:
+
+### Steps to Solve the Puzzle
+
+1. **Farmer takes the goose across the river.**
+   - Left Bank: Fox, Grain
+   - Right Bank: Farmer, Goose
+
+2. **Farmer goes back alone.**
+   - Left Bank: Farmer, Fox, Grain
+   - Right Bank: Goose
+
+3. **Farmer takes the fox across the river.**
+   - Left Bank: Grain
+   - Right Bank: Farmer, Fox
+   - *Note: The goose is left alone, which is safe.*
+
+4. **Farmer brings the goose back.**
+   - Left Bank: Farmer, Goose, Grain
+   - Right Bank: Fox
+
+5. **Farmer takes the grain across the river.**
+   - Left Bank: Goose
+   - Right Bank: Farmer, Fox, Grain
+
+6. **Farmer goes back alone.**
+   - Left Bank: Farmer, Goose
+   - Right Bank: Fox, Grain
+
+7. **Farmer takes the goose across the river.**
+   - Left Bank: (empty)
+   - Right Bank: Farmer, Fox, Goose, Grain
+
+### Explanation
+- The key to solving this puzzle is ensuring that the fox is never left alone with the goose, and the goose is never left alone with the grain.
+- By carefully planning the sequence of moves, the farmer ensures that no prohibited pair is left together at any point.
+
+This sequence successfully transports all items across the river while adhering to the rules.
+
+
+GPT-5 mini
+I'll give the shortest valid sequence and the key insight.
+
+**Solution**
+1. Farmer takes the goose → (Left: fox, grain | Right: farmer, goose)  
+2. Farmer returns alone ← (Left: farmer, fox, grain | Right: goose)  
+3. Farmer takes the fox → (Left: grain | Right: farmer, fox, goose)  
+4. Farmer brings the goose back ← (Left: farmer, goose, grain | Right: fox)  
+5. Farmer takes the grain → (Left: goose | Right: farmer, fox, grain)  
+6. Farmer returns alone ← (Left: farmer, goose | Right: fox, grain)  
+7. Farmer takes the goose → (Left: — | Right: farmer, fox, goose, grain)
+
+**Key Insight:** Step 4 — bringing the goose back — prevents leaving fox with goose or goose with grain, enabling all to be transported safely.
