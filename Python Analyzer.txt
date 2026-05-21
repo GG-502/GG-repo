@@ -1,0 +1,109 @@
+import csv
+import csv
+
+def calculate_total_sales(filename):
+    """
+    This function reads a CSV file and calculates the total sales.
+
+    It assumes the CSV has 'product_name', 'price', 'quantity' columns.
+    Returns the total as a float, or None if an error occurred.
+    """
+    total = 0.0
+
+    try:
+        with open(filename, mode='r', encoding='utf-8', newline='') as file:
+            csv_reader = csv.DictReader(file)
+
+            for line_num, row in enumerate(csv_reader, start=2):
+                try:
+                    price = float(row['price'])
+                    quantity = int(row['quantity'])
+                except KeyError as exc:
+                    print(f"Error: Missing required column {exc} in CSV header.")
+                    return None
+                except ValueError as exc:
+                    print(
+                        f"Error: Invalid numeric value on line {line_num}: {exc}. "
+                        f"Expected numeric values for price and quantity."
+                    )
+                    return None
+
+                total += price * quantity
+
+    except FileNotFoundError:
+        print(f"Error: File not found: {filename}")
+        return None
+    except OSError as exc:
+        print(f"Error reading file {filename}: {exc}")
+        return None
+
+    return total
+
+
+def top_selling_product(filename):
+    """
+    Identify the top-selling product by total revenue (price * quantity).
+    Returns a tuple (product_name, revenue) or (None, None) on error.
+    """
+    revenue_by_product = {}
+
+    try:
+        with open(filename, mode='r', encoding='utf-8', newline='') as file:
+            csv_reader = csv.DictReader(file)
+
+            for line_num, row in enumerate(csv_reader, start=2):
+                try:
+                    product = row['product_name']
+                    price = float(row['price'])
+                    quantity = int(row['quantity'])
+                except KeyError as exc:
+                    print(f"Error: Missing required column {exc} in CSV header.")
+                    return None, None
+                except ValueError as exc:
+                    print(
+                        f"Error: Invalid numeric value on line {line_num}: {exc}. "
+                        f"Expected numeric values for price and quantity."
+                    )
+                    return None, None
+
+                revenue_by_product[product] = revenue_by_product.get(product, 0.0) + price * quantity
+
+    except FileNotFoundError:
+        print(f"Error: File not found: {filename}")
+        return None, None
+    except OSError as exc:
+        print(f"Error reading file {filename}: {exc}")
+        return None, None
+
+    if not revenue_by_product:
+        print(f"No sales data found in {filename}.")
+        return None, None
+
+    top_product = max(revenue_by_product.items(), key=lambda x: x[1])
+    return top_product
+
+
+if __name__ == "__main__":
+    sales_data_file = 'sales_data.csv'
+
+    total_sales = calculate_total_sales(sales_data_file)
+    top_product, top_revenue = top_selling_product(sales_data_file)
+
+    if total_sales is not None:
+        print(f"Total sales from {sales_data_file}: ${total_sales:.2f}")
+    else:
+        print("Total sales could not be calculated due to earlier errors.")
+
+    if top_product is not None:
+        print(f"Top-selling product by revenue: {top_product} (${top_revenue:.2f})")
+    else:
+        print("Top-selling product could not be determined due to earlier errors.")
+    return total
+
+
+if __name__ == "__main__":
+    sales_data_file = 'sales_data.csv'
+    total_sales = calculate_total_sales(sales_data_file)
+
+    if total_sales is not None:
+        print(f"Total sales from {sales_data_file}: ${total_sales:.2f}")
