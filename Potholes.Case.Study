@@ -1,0 +1,18 @@
+Potholes Case Study Scenario & Task
+The Scenario:
+A city's transportation department wants to build an AI model to predict where potholes are most likely to form. The goal is to proactively send repair crews to high-risk areas before the potholes become a major problem.
+
+To do this, they train the AI on the last three years of data from the city's "311 Pothole Reporting" app, where citizens can take a picture and log the location of a pothole."
+
+The Task: 
+Your team is hired to audit this plan before it's built. Identify at least two major sources of Data Bias in this training plan.
+
+What kind of bias is it (e.g., selection, measurement, historical)?
+What is the likely real-world consequence of this bias?
+What dangerous Feedback Loop could this AI create?
+
+Selection Bias
+If AI is trained on previous 3 years of potholes reported via an app, we are only looking at data from citizens who (1) have a smartphone and (2) are tech-savy.  Those limitations would likely show that potholes are reported more frequently in higher-income neighborhoods or by non-elderly citizens. The real-world fallout would be that lower-income neighborhoods and elderly population without smartphones would not be included in the data set.  Therefore, the AI would predict potholes need to be fixed in only areas that have reported them. Simultaniously, the non-reported potholes would be passed over and the repair needed would escalate over time.  The dangerout feedback loop would occur after "successful" pothole repairs are completed and reported back. That data reinforces the predictions and have an increased tendency to ignore neighborhoods where less people have smartphones, internet or tech-savvyness. 
+
+Measurement Bias
+The photos that citizens submit via the app will not be consistant.  The variation of clear v. fuzzy, zoomed in v. far away would make it difficult to apply a standard measurement to the reported potholes.  The real-world consequence could be that the AI determines that the zoomed in photos are larger, higher priority potholes.  The dangerout feedback loop is that the completed repairs will further prove to the AI that they are choosing the most needed repairs first.  When in reality, the measurement of pothole severity was not properly calibrated.
